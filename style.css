@@ -1,0 +1,172 @@
+@font-face {
+    font-family: 'LCD Solid';
+    src: url('fonts/lcdsolid-vpzb-webfont.woff2') format('woff2'),
+         url('fonts/lcdsolid-vpzb-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  --button-bg-color: white;
+  --control-bg-color: red;
+  --operator-bg-color: orange;
+  --display-bg-color: hsl(208deg 100% 90%);
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: Roboto, sans-serif;
+  user-select: none;
+}
+
+button {
+  border: 2px outset var(--button-bg-color);
+  border-radius: 4px;
+  outline: none;
+  font-family: Roboto, sans-serif;
+  font-size: 24px;
+  background-color: var(--button-bg-color);
+  transition: all 0.1s;
+}
+
+.calculator {
+  padding: 16px;
+  border-radius: 8px;
+  background-color: black;
+}
+
+.display {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 80px;
+  border: 2px inset var(--display-bg-color);
+  border-radius: 4px;
+  padding: 16px 8px;
+  margin-bottom: 16px;
+  font-family: "LCD Solid", monospace;
+  font-size: 32px;
+  background-color: var(--display-bg-color);
+}
+
+.keypad {
+  display: grid;
+  grid-template-areas:
+    "clear clear backspace divide"
+    "seven eight nine      multiply"
+    "four  five  six       subtract"
+    "one   two   three     add"
+    "zero  equal equal     equal";
+  grid-auto-rows: 80px;
+  grid-auto-columns: 96px;
+  gap: 4px;
+}
+
+.control {
+  border-color: var(--control-bg-color);
+  background-color: var(--control-bg-color);
+  color: white;
+}
+
+.operator {
+  border-color: var(--operator-bg-color);
+  background-color: var(--operator-bg-color);
+}
+
+/* Grid area names */
+
+.clear {
+  grid-area: clear;
+}
+
+.backspace {
+  grid-area: backspace;
+}
+
+.divide {
+  grid-area: divide;
+}
+
+.multiply {
+  grid-area: multiply;
+}
+
+.subtract {
+  grid-area: subtract;
+}
+
+.add {
+  grid-area: add;
+}
+
+.equal {
+  grid-area: equal;
+}
+
+.one {
+  grid-area: one;
+}
+
+.two {
+  grid-area: two;
+}
+
+.three {
+  grid-area: three;
+}
+
+.four {
+  grid-area: four;
+}
+
+.five {
+  grid-area: five;
+}
+
+.six {
+  grid-area: six;
+}
+
+.seven {
+  grid-area: seven;
+}
+
+.eight {
+  grid-area: eight;
+}
+
+.nine {
+  grid-area: nine;
+}
+
+.zero {
+  grid-area: zero;
+}
+
+/* Element states */
+
+.active {
+  transform: scale(0.95);
+  border: 2px inset var(--button-bg-color);
+}
+
+.active.control {
+  border-color: var(--control-bg-color);
+}
+
+.active.operator {
+  border-color: var(--operator-bg-color);
+}
+
+.error {
+  color: red;
+}
