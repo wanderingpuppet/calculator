@@ -32,6 +32,22 @@ operators.forEach((operator) =>
   operator.addEventListener("click", activateOperator)
 );
 
+// Allow keyboard shortcuts
+document.addEventListener("keydown", (event) => {
+  const button = document.querySelector(`button[data-key="${event.key}"]`);
+  if (!button) return;
+
+  button.click();
+});
+
+// Ensure that button is inactive after key is released
+document.addEventListener("keyup", (event) => {
+  const button = document.querySelector(`button[data-key="${event.key}"]`);
+  if (!button) return;
+
+  button.dispatchEvent(new Event("transitionend"));
+});
+
 function enterValue() {
   if (hasError) return;
 
