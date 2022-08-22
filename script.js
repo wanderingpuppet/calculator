@@ -79,7 +79,7 @@ function activateOperator() {
     const result = operate(currentOperator, +prevValue, +displayValue);
     prevValue = null;
     currentOperator = null;
-    updateDisplay(result);
+    updateDisplay(result.toString());
   }
 
   this.classList.add("active");
@@ -95,7 +95,7 @@ function clearAll() {
   currentOperator = null;
   hasError = false;
   display.classList.remove("error");
-  updateDisplay(0);
+  updateDisplay("0");
 }
 
 function clearEntry() {
@@ -126,6 +126,14 @@ function updateDisplay(value) {
     return;
   }
 
+  const hasTrailingDecimalPoint = value.endsWith(".");
+
+  /*
+    Strip trailing decimal point. This prevent value from being converted to
+    NaN when it is already a decimal
+  */
+  if (hasTrailingDecimalPoint) value = value.slice(0, -1);
+
   let n = +value;
 
   // Truncate scientific notation and round decimals
@@ -146,6 +154,12 @@ function updateDisplay(value) {
   }
 
   displayValue = n.toString();
+
+  // Only display the trailing decimal point when it is valid
+  if (hasTrailingDecimalPoint && !displayValue.includes(".")) {
+    displayValue += ".";
+  }
+
   display.textContent = displayValue;
 }
 
