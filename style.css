@@ -61,11 +61,11 @@ button {
 .keypad {
   display: grid;
   grid-template-areas:
-    "clear clear   backspace divide"
-    "seven eight   nine      multiply"
-    "four  five    six       subtract"
-    "one   two     three     add"
-    "zero  decimal equal     equal";
+    "clear backspace sign  divide"
+    "seven eight     nine  multiply"
+    "four  five      six   subtract"
+    "one   two       three add"
+    "zero  decimal   equal equal";
   grid-auto-rows: 80px;
   grid-auto-columns: 96px;
   gap: 4px;
@@ -90,6 +90,10 @@ button {
 
 .backspace {
   grid-area: backspace;
+}
+
+.sign {
+  grid-area: sign;
 }
 
 .divide {

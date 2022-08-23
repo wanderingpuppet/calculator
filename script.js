@@ -6,6 +6,7 @@ const display = document.querySelector(".display");
 const clearButton = document.querySelector(".clear");
 const backspaceButton = document.querySelector(".backspace");
 const equalButton = document.querySelector(".equal");
+const signButton = document.querySelector(".sign");
 
 const operators = document.querySelectorAll(".operator");
 const nonOperators = document.querySelectorAll("button:not(.operator)");
@@ -22,8 +23,9 @@ nonOperators.forEach((button) => {
   button.addEventListener("transitionend", deactivateButton);
 });
 
-// Equal button has the same active transition as a non operator button
+// Equal and sign buttons have the same active transition as a non operator button
 equalButton.addEventListener("transitionend", deactivateButton);
+signButton.addEventListener("transitionend", deactivateButton);
 
 clearButton.addEventListener("click", clearAll);
 backspaceButton.addEventListener("click", clearEntry);
@@ -66,6 +68,14 @@ function enterValue() {
 
 function activateOperator() {
   if (hasError) return;
+
+  // Sign button negates the display value
+  if (this.classList.contains("sign")) {
+    const value = displayValue * -1;
+    this.classList.add("active");
+    updateDisplay(value.toString());
+    return;
+  }
 
   // Deactivate an active operator
   const activeOperator = getActiveOperator();
